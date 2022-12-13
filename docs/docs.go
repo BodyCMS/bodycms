@@ -13,7 +13,7 @@ const docTemplate = `{
         "termsOfService": "http://swagger.io/terms/",
         "contact": {
             "name": "API Support",
-            "email": "fiber@swagger.io"
+            "email": "hungtp.play@gmail.com"
         },
         "license": {
             "name": "Apache 2.0",
@@ -28,12 +28,12 @@ const docTemplate = `{
 
 // SwaggerInfo holds exported Swagger Info so clients can modify it
 var SwaggerInfo = &swag.Spec{
-	Version:          "1.0",
-	Host:             "localhost:8080",
+	Version:          "0.0.1",
+	Host:             "",
 	BasePath:         "/",
 	Schemes:          []string{},
-	Title:            "Fiber Example API",
-	Description:      "This is a sample swagger for Fiber",
+	Title:            "BodyCMS API",
+	Description:      "API that BodyCMS provides to its users.",
 	InfoInstanceName: "swagger",
 	SwaggerTemplate:  docTemplate,
 }
