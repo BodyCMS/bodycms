@@ -1,3 +1,3 @@
 module github.com/BodyCMS/bodycms
 
-go 1.13
+go 1.19
