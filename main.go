@@ -1,9 +1,12 @@
 package main
 
 import (
+	"os"
+
 	_ "github.com/BodyCMS/bodycms/docs"
-	swagger "github.com/arsmn/fiber-swagger/v2"
+	"github.com/BodyCMS/bodycms/lib/controller"
 	"github.com/gofiber/fiber/v2"
+	"github.com/joho/godotenv"
 )
 
 // @title BodyCMS API
@@ -16,15 +19,16 @@ import (
 // @license.url http://www.apache.org/licenses/LICENSE-2.0.html
 // @BasePath /
 func main() {
+
+	err := godotenv.Load()
+	if err != nil {
+		panic(err)
+	}
+
 	app := fiber.New()
 
-	app.Get("/swagger/*", swagger.HandlerDefault) // default
+	// Swagger
+	controller.ApplySwaggerRoutes(app)
 
-	app.Get("/swagger/*", swagger.New(swagger.Config{ // custom
-		URL:          "http://example.com/doc.json",
-		DeepLinking:  false,
-		DocExpansion: "none",
-	}))
-
-	app.Listen(":8080")
+	app.Listen(":" + os.Getenv("PORT"))
 }
