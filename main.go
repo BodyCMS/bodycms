@@ -3,6 +3,7 @@ package main
 import (
 	"os"
 
+	"github.com/BodyCMS/bodycms/core/tag"
 	_ "github.com/BodyCMS/bodycms/docs"
 	"github.com/BodyCMS/bodycms/lib/controller"
 	"github.com/gofiber/fiber/v2"
@@ -26,6 +27,10 @@ func main() {
 	}
 
 	app := fiber.New()
+
+	// Controller
+	v1Route := app.Group("/api/v1")
+	controller.ApplyController(v1Route, &tag.TagController{})
 
 	// Swagger
 	controller.ApplySwaggerRoutes(app)
