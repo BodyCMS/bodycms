@@ -6,6 +6,7 @@ import (
 	"github.com/BodyCMS/bodycms/core/tag"
 	_ "github.com/BodyCMS/bodycms/docs"
 	"github.com/BodyCMS/bodycms/lib/controller"
+	"github.com/BodyCMS/bodycms/lib/db"
 	"github.com/gofiber/fiber/v2"
 	"github.com/joho/godotenv"
 )
@@ -20,11 +21,13 @@ import (
 // @license.url http://www.apache.org/licenses/LICENSE-2.0.html
 // @BasePath /
 func main() {
-
 	err := godotenv.Load()
 	if err != nil {
 		panic(err)
 	}
+
+	// Migration
+	db.MigrateAll(&tag.TagRepo{})
 
 	app := fiber.New()
 

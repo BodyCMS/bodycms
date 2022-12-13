@@ -9,7 +9,7 @@ var dbInstance *CmsDb
 
 type CmsDb struct {
 	Options *DbOptions
-	pdb     *gorm.DB
+	Pdb     *gorm.DB
 }
 
 func init() {
@@ -32,18 +32,7 @@ func (db *CmsDb) Connect() error {
 		panic(err)
 	}
 
-	db.pdb = pdb
-
-	return nil
-}
-
-func (db *CmsDb) AutoMigrate(model ...interface{}) error {
-	for _, m := range model {
-		err := db.pdb.AutoMigrate(m)
-		if err != nil {
-			panic(err)
-		}
-	}
+	db.Pdb = pdb
 
 	return nil
 }
