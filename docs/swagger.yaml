@@ -7,6 +7,13 @@ definitions:
       name:
         type: string
     type: object
+  tag.Tag:
+    properties:
+      id:
+        type: integer
+      name:
+        type: string
+    type: object
 info:
   contact:
     email: hungtp.play@gmail.com
@@ -142,4 +149,127 @@ paths:
       summary: Update category
       tags:
       - categories
+  /tags:
+    get:
+      consumes:
+      - application/json
+      description: Show all tags
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/tag.Tag'
+        "500":
+          description: Internal Server Error
+          schema:
+            type: string
+      summary: Show all tags
+      tags:
+      - tags
+    post:
+      consumes:
+      - application/json
+      description: Create tag
+      parameters:
+      - description: Tag
+        in: body
+        name: tag
+        required: true
+        schema:
+          $ref: '#/definitions/tag.Tag'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/tag.Tag'
+        "500":
+          description: Internal Server Error
+          schema:
+            type: string
+      summary: Create tag
+      tags:
+      - tags
+  /tags/:id:
+    delete:
+      consumes:
+      - application/json
+      description: Delete tag
+      parameters:
+      - description: Tag ID
+        in: path
+        name: id
+        required: true
+        type: integer
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            type: string
+        "500":
+          description: Internal Server Error
+          schema:
+            type: string
+      summary: Delete tag
+      tags:
+      - tags
+    get:
+      consumes:
+      - application/json
+      description: Show tag by id
+      parameters:
+      - description: Tag ID
+        in: path
+        name: id
+        required: true
+        type: integer
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/tag.Tag'
+        "500":
+          description: Internal Server Error
+          schema:
+            type: string
+      summary: Show tag by id
+      tags:
+      - tags
+    put:
+      consumes:
+      - application/json
+      description: Update tag
+      parameters:
+      - description: Tag ID
+        in: path
+        name: id
+        required: true
+        type: integer
+      - description: Tag
+        in: body
+        name: tag
+        required: true
+        schema:
+          $ref: '#/definitions/tag.Tag'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/tag.Tag'
+        "500":
+          description: Internal Server Error
+          schema:
+            type: string
+      summary: Update tag
+      tags:
+      - tags
 swagger: "2.0"
