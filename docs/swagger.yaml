@@ -1,4 +1,12 @@
 basePath: /
+definitions:
+  category.Category:
+    properties:
+      id:
+        type: integer
+      name:
+        type: string
+    type: object
 info:
   contact:
     email: hungtp.play@gmail.com
@@ -10,5 +18,128 @@ info:
   termsOfService: http://swagger.io/terms/
   title: BodyCMS API
   version: 0.0.1
-paths: {}
+paths:
+  /categories:
+    get:
+      consumes:
+      - application/json
+      description: Show all categories
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/category.Category'
+        "500":
+          description: Internal Server Error
+          schema:
+            type: string
+      summary: Show all categories
+      tags:
+      - categories
+    post:
+      consumes:
+      - application/json
+      description: Create category
+      parameters:
+      - description: Category
+        in: body
+        name: category
+        required: true
+        schema:
+          $ref: '#/definitions/category.Category'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/category.Category'
+        "500":
+          description: Internal Server Error
+          schema:
+            type: string
+      summary: Create category
+      tags:
+      - categories
+  /categories/{id}:
+    delete:
+      consumes:
+      - application/json
+      description: Delete category
+      parameters:
+      - description: Category ID
+        in: path
+        name: id
+        required: true
+        type: integer
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            type: string
+        "500":
+          description: Internal Server Error
+          schema:
+            type: string
+      summary: Delete category
+      tags:
+      - categories
+    get:
+      consumes:
+      - application/json
+      description: Show category by id
+      parameters:
+      - description: Category ID
+        in: path
+        name: id
+        required: true
+        type: integer
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/category.Category'
+        "500":
+          description: Internal Server Error
+          schema:
+            type: string
+      summary: Show category by id
+      tags:
+      - categories
+    put:
+      consumes:
+      - application/json
+      description: Update category
+      parameters:
+      - description: Category ID
+        in: path
+        name: id
+        required: true
+        type: integer
+      - description: Category
+        in: body
+        name: category
+        required: true
+        schema:
+          $ref: '#/definitions/category.Category'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/category.Category'
+        "500":
+          description: Internal Server Error
+          schema:
+            type: string
+      summary: Update category
+      tags:
+      - categories
 swagger: "2.0"

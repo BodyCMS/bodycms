@@ -37,6 +37,15 @@ func (c *CategoryController) ApplyController(router fiber.Router) error {
 	return nil
 }
 
+// Show all categories
+// @Summary Show all categories
+// @Description Show all categories
+// @Tags categories
+// @Accept  json
+// @Produce  json
+// @Success 200 {object} Category
+// @Failure 500 {string} string "Internal Server Error"
+// @Router /categories [get]
 func handleCategoryGetAll(c *fiber.Ctx) error {
 	var categories []Category
 	err := categoryService.FindAll(&CategoryWhere{}, &categories)
@@ -47,6 +56,16 @@ func handleCategoryGetAll(c *fiber.Ctx) error {
 	return c.JSON(categories)
 }
 
+// Show category by id
+// @Summary Show category by id
+// @Description Show category by id
+// @Tags categories
+// @Accept  json
+// @Produce  json
+// @Param id path int true "Category ID"
+// @Success 200 {object} Category
+// @Failure 500 {string} string "Internal Server Error"
+// @Router /categories/{id} [get]
 func handleCategoryGet(c *fiber.Ctx) error {
 	id, err := strconv.Atoi(c.Params("id"))
 	if err != nil {
@@ -63,6 +82,16 @@ func handleCategoryGet(c *fiber.Ctx) error {
 	return c.JSON(category)
 }
 
+// Create category
+// @Summary Create category
+// @Description Create category
+// @Tags categories
+// @Accept  json
+// @Produce  json
+// @Param category body Category true "Category"
+// @Success 200 {object} Category
+// @Failure 500 {string} string "Internal Server Error"
+// @Router /categories [post]
 func handleCategoryPost(c *fiber.Ctx) error {
 	var category Category
 	err := c.BodyParser(&category)
@@ -78,6 +107,17 @@ func handleCategoryPost(c *fiber.Ctx) error {
 	return c.JSON(category)
 }
 
+// Update category
+// @Summary Update category
+// @Description Update category
+// @Tags categories
+// @Accept  json
+// @Produce  json
+// @Param id path int true "Category ID"
+// @Param category body Category true "Category"
+// @Success 200 {object} Category
+// @Failure 500 {string} string "Internal Server Error"
+// @Router /categories/{id} [put]
 func handleCategoryPut(c *fiber.Ctx) error {
 	id, err := strconv.Atoi(c.Params("id"))
 	if err != nil {
@@ -98,6 +138,16 @@ func handleCategoryPut(c *fiber.Ctx) error {
 	return c.JSON(category)
 }
 
+// Delete category
+// @Summary Delete category
+// @Description Delete category
+// @Tags categories
+// @Accept  json
+// @Produce  json
+// @Param id path int true "Category ID"
+// @Success 200 {string} string "OK"
+// @Failure 500 {string} string "Internal Server Error"
+// @Router /categories/{id} [delete]
 func handleCategoryDelete(c *fiber.Ctx) error {
 	id, err := strconv.Atoi(c.Params("id"))
 	if err != nil {
