@@ -37,6 +37,15 @@ func (t *TagController) ApplyController(router fiber.Router) error {
 	return nil
 }
 
+// Show all tags
+// @Summary Show all tags
+// @Description Show all tags
+// @Tags tags
+// @Accept  json
+// @Produce  json
+// @Success 200 {object} Tag
+// @Failure 500 {string} string "Internal Server Error"
+// @Router /tags [get]
 func handleTagGetAll(c *fiber.Ctx) error {
 	var tags []Tag
 	err := tagService.FindAll(&TagWhere{}, &tags)
@@ -47,6 +56,16 @@ func handleTagGetAll(c *fiber.Ctx) error {
 	return c.JSON(tags)
 }
 
+// Show tag by id
+// @Summary Show tag by id
+// @Description Show tag by id
+// @Tags tags
+// @Accept  json
+// @Produce  json
+// @Param id path int true "Tag ID"
+// @Success 200 {object} Tag
+// @Failure 500 {string} string "Internal Server Error"
+// @Router /tags/:id [get]
 func handleTagGet(c *fiber.Ctx) error {
 	id, err := strconv.Atoi(c.Params("id"))
 	if err != nil {
@@ -63,6 +82,16 @@ func handleTagGet(c *fiber.Ctx) error {
 	return c.JSON(tag)
 }
 
+// Create tag
+// @Summary Create tag
+// @Description Create tag
+// @Tags tags
+// @Accept  json
+// @Produce  json
+// @Param tag body Tag true "Tag"
+// @Success 200 {object} Tag
+// @Failure 500 {string} string "Internal Server Error"
+// @Router /tags [post]
 func handleTagPost(c *fiber.Ctx) error {
 	var tag Tag
 	err := c.BodyParser(&tag)
@@ -78,6 +107,17 @@ func handleTagPost(c *fiber.Ctx) error {
 	return c.JSON(tag)
 }
 
+// Update tag
+// @Summary Update tag
+// @Description Update tag
+// @Tags tags
+// @Accept  json
+// @Produce  json
+// @Param id path int true "Tag ID"
+// @Param tag body Tag true "Tag"
+// @Success 200 {object} Tag
+// @Failure 500 {string} string "Internal Server Error"
+// @Router /tags/:id [put]
 func handleTagPut(c *fiber.Ctx) error {
 	id, err := strconv.Atoi(c.Params("id"))
 	if err != nil {
@@ -102,6 +142,16 @@ func handleTagPut(c *fiber.Ctx) error {
 	return c.JSON(tag)
 }
 
+// Delete tag
+// @Summary Delete tag
+// @Description Delete tag
+// @Tags tags
+// @Accept  json
+// @Produce  json
+// @Param id path int true "Tag ID"
+// @Success 200 {string} string "OK"
+// @Failure 500 {string} string "Internal Server Error"
+// @Router /tags/:id [delete]
 func handleTagDelete(c *fiber.Ctx) error {
 	id, err := strconv.Atoi(c.Params("id"))
 	if err != nil {

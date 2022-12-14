@@ -1,4 +1,43 @@
 basePath: /
+definitions:
+  category.Category:
+    properties:
+      id:
+        type: integer
+      name:
+        type: string
+    type: object
+  post.Post:
+    properties:
+      author:
+        type: string
+      author_id:
+        type: integer
+      categories:
+        type: string
+      content:
+        type: string
+      id:
+        type: integer
+      tags:
+        type: string
+      title:
+        type: string
+    type: object
+  tag.Tag:
+    properties:
+      id:
+        type: integer
+      name:
+        type: string
+    type: object
+  user.User:
+    properties:
+      email:
+        type: string
+      username:
+        type: string
+    type: object
 info:
   contact:
     email: hungtp.play@gmail.com
@@ -10,5 +49,471 @@ info:
   termsOfService: http://swagger.io/terms/
   title: BodyCMS API
   version: 0.0.1
-paths: {}
+paths:
+  /categories:
+    get:
+      consumes:
+      - application/json
+      description: Show all categories
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/category.Category'
+        "500":
+          description: Internal Server Error
+          schema:
+            type: string
+      summary: Show all categories
+      tags:
+      - categories
+    post:
+      consumes:
+      - application/json
+      description: Create category
+      parameters:
+      - description: Category
+        in: body
+        name: category
+        required: true
+        schema:
+          $ref: '#/definitions/category.Category'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/category.Category'
+        "500":
+          description: Internal Server Error
+          schema:
+            type: string
+      summary: Create category
+      tags:
+      - categories
+  /categories/{id}:
+    delete:
+      consumes:
+      - application/json
+      description: Delete category
+      parameters:
+      - description: Category ID
+        in: path
+        name: id
+        required: true
+        type: integer
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            type: string
+        "500":
+          description: Internal Server Error
+          schema:
+            type: string
+      summary: Delete category
+      tags:
+      - categories
+    get:
+      consumes:
+      - application/json
+      description: Show category by id
+      parameters:
+      - description: Category ID
+        in: path
+        name: id
+        required: true
+        type: integer
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/category.Category'
+        "500":
+          description: Internal Server Error
+          schema:
+            type: string
+      summary: Show category by id
+      tags:
+      - categories
+    put:
+      consumes:
+      - application/json
+      description: Update category
+      parameters:
+      - description: Category ID
+        in: path
+        name: id
+        required: true
+        type: integer
+      - description: Category
+        in: body
+        name: category
+        required: true
+        schema:
+          $ref: '#/definitions/category.Category'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/category.Category'
+        "500":
+          description: Internal Server Error
+          schema:
+            type: string
+      summary: Update category
+      tags:
+      - categories
+  /posts:
+    get:
+      consumes:
+      - application/json
+      description: Show all posts
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/post.Post'
+        "500":
+          description: Internal Server Error
+          schema:
+            type: string
+      summary: Show all posts
+      tags:
+      - posts
+    post:
+      consumes:
+      - application/json
+      description: Create post
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/post.Post'
+        "500":
+          description: Internal Server Error
+          schema:
+            type: string
+      summary: Create post
+      tags:
+      - posts
+  /posts/:id:
+    delete:
+      consumes:
+      - application/json
+      description: Delete post
+      parameters:
+      - description: Post ID
+        in: path
+        name: id
+        required: true
+        type: integer
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/post.Post'
+        "500":
+          description: Internal Server Error
+          schema:
+            type: string
+      summary: Delete post
+      tags:
+      - posts
+    get:
+      consumes:
+      - application/json
+      description: Show post by id
+      parameters:
+      - description: Post ID
+        in: path
+        name: id
+        required: true
+        type: integer
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/post.Post'
+        "500":
+          description: Internal Server Error
+          schema:
+            type: string
+      summary: Show post by id
+      tags:
+      - posts
+    put:
+      consumes:
+      - application/json
+      description: Update post
+      parameters:
+      - description: Post ID
+        in: path
+        name: id
+        required: true
+        type: integer
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/post.Post'
+        "500":
+          description: Internal Server Error
+          schema:
+            type: string
+      summary: Update post
+      tags:
+      - posts
+  /tags:
+    get:
+      consumes:
+      - application/json
+      description: Show all tags
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/tag.Tag'
+        "500":
+          description: Internal Server Error
+          schema:
+            type: string
+      summary: Show all tags
+      tags:
+      - tags
+    post:
+      consumes:
+      - application/json
+      description: Create tag
+      parameters:
+      - description: Tag
+        in: body
+        name: tag
+        required: true
+        schema:
+          $ref: '#/definitions/tag.Tag'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/tag.Tag'
+        "500":
+          description: Internal Server Error
+          schema:
+            type: string
+      summary: Create tag
+      tags:
+      - tags
+  /tags/:id:
+    delete:
+      consumes:
+      - application/json
+      description: Delete tag
+      parameters:
+      - description: Tag ID
+        in: path
+        name: id
+        required: true
+        type: integer
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            type: string
+        "500":
+          description: Internal Server Error
+          schema:
+            type: string
+      summary: Delete tag
+      tags:
+      - tags
+    get:
+      consumes:
+      - application/json
+      description: Show tag by id
+      parameters:
+      - description: Tag ID
+        in: path
+        name: id
+        required: true
+        type: integer
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/tag.Tag'
+        "500":
+          description: Internal Server Error
+          schema:
+            type: string
+      summary: Show tag by id
+      tags:
+      - tags
+    put:
+      consumes:
+      - application/json
+      description: Update tag
+      parameters:
+      - description: Tag ID
+        in: path
+        name: id
+        required: true
+        type: integer
+      - description: Tag
+        in: body
+        name: tag
+        required: true
+        schema:
+          $ref: '#/definitions/tag.Tag'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/tag.Tag'
+        "500":
+          description: Internal Server Error
+          schema:
+            type: string
+      summary: Update tag
+      tags:
+      - tags
+  /users:
+    get:
+      consumes:
+      - application/json
+      description: Show all users
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/user.User'
+        "500":
+          description: Internal Server Error
+          schema:
+            type: string
+      summary: Show all users
+      tags:
+      - users
+    post:
+      consumes:
+      - application/json
+      description: Create user
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/user.User'
+        "500":
+          description: Internal Server Error
+          schema:
+            type: string
+      summary: Create user
+      tags:
+      - users
+  /users/:id:
+    delete:
+      consumes:
+      - application/json
+      description: Delete user by id
+      parameters:
+      - description: User ID
+        in: path
+        name: id
+        required: true
+        type: integer
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/user.User'
+        "500":
+          description: Internal Server Error
+          schema:
+            type: string
+      summary: Delete user by id
+      tags:
+      - users
+    get:
+      consumes:
+      - application/json
+      description: Show user by id
+      parameters:
+      - description: User ID
+        in: path
+        name: id
+        required: true
+        type: integer
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/user.User'
+        "500":
+          description: Internal Server Error
+          schema:
+            type: string
+      summary: Show user by id
+      tags:
+      - users
+    put:
+      consumes:
+      - application/json
+      description: Update user by id
+      parameters:
+      - description: User ID
+        in: path
+        name: id
+        required: true
+        type: integer
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/user.User'
+        "500":
+          description: Internal Server Error
+          schema:
+            type: string
+      summary: Update user by id
+      tags:
+      - users
 swagger: "2.0"
