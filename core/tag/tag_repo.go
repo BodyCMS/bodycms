@@ -5,14 +5,14 @@ import (
 )
 
 type TagRepo struct {
-	cmsDb *db.CmsDb
+	CmsDb *db.CmsDb
 }
 
 func (t *TagRepo) SetEngine(engine *db.CmsDb) error {
-	t.cmsDb = engine
+	t.CmsDb = engine
 	return nil
 }
 
 func (t *TagRepo) AutoMigration() error {
-	return t.cmsDb.Pdb.AutoMigrate(&Tag{})
+	return t.CmsDb.Pdb.AutoMigrate(&Tag{})
 }

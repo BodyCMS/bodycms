@@ -8,7 +8,6 @@ import (
 	"github.com/BodyCMS/bodycms/lib/controller"
 	"github.com/BodyCMS/bodycms/lib/db"
 	"github.com/gofiber/fiber/v2"
-	"github.com/joho/godotenv"
 )
 
 // @title BodyCMS API
@@ -21,13 +20,16 @@ import (
 // @license.url http://www.apache.org/licenses/LICENSE-2.0.html
 // @BasePath /
 func main() {
-	err := godotenv.Load()
+	pdb := db.GetDbInstance()
+	err := pdb.Connect()
 	if err != nil {
 		panic(err)
 	}
 
 	// Migration
-	db.MigrateAll(&tag.TagRepo{})
+	db.MigrateAll(&tag.TagRepo{
+		CmsDb: pdb,
+	})
 
 	app := fiber.New()
 
