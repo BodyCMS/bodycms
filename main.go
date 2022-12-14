@@ -1,8 +1,12 @@
 package main
 
 import (
+	"os"
+
+	"github.com/BodyCMS/bodycms/core/tag"
 	_ "github.com/BodyCMS/bodycms/docs"
-	swagger "github.com/arsmn/fiber-swagger/v2"
+	"github.com/BodyCMS/bodycms/lib/controller"
+	"github.com/BodyCMS/bodycms/lib/db"
 	"github.com/gofiber/fiber/v2"
 )
 
@@ -16,15 +20,25 @@ import (
 // @license.url http://www.apache.org/licenses/LICENSE-2.0.html
 // @BasePath /
 func main() {
+	pdb := db.GetDbInstance()
+	err := pdb.Connect()
+	if err != nil {
+		panic(err)
+	}
+
+	// Migration
+	db.MigrateAll(&tag.TagRepo{
+		CmsDb: pdb,
+	})
+
 	app := fiber.New()
 
-	app.Get("/swagger/*", swagger.HandlerDefault) // default
+	// Controller
+	v1Route := app.Group("/api/v1")
+	controller.ApplyController(v1Route, &tag.TagController{})
 
-	app.Get("/swagger/*", swagger.New(swagger.Config{ // custom
-		URL:          "http://example.com/doc.json",
-		DeepLinking:  false,
-		DocExpansion: "none",
-	}))
+	// Swagger
+	controller.ApplySwaggerRoutes(app)
 
-	app.Listen(":8080")
+	app.Listen(":" + os.Getenv("PORT"))
 }
