@@ -14,6 +14,13 @@ definitions:
       name:
         type: string
     type: object
+  user.User:
+    properties:
+      email:
+        type: string
+      username:
+        type: string
+    type: object
 info:
   contact:
     email: hungtp.play@gmail.com
@@ -272,4 +279,114 @@ paths:
       summary: Update tag
       tags:
       - tags
+  /users:
+    get:
+      consumes:
+      - application/json
+      description: Show all users
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/user.User'
+        "500":
+          description: Internal Server Error
+          schema:
+            type: string
+      summary: Show all users
+      tags:
+      - users
+    post:
+      consumes:
+      - application/json
+      description: Create user
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/user.User'
+        "500":
+          description: Internal Server Error
+          schema:
+            type: string
+      summary: Create user
+      tags:
+      - users
+  /users/:id:
+    delete:
+      consumes:
+      - application/json
+      description: Delete user by id
+      parameters:
+      - description: User ID
+        in: path
+        name: id
+        required: true
+        type: integer
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/user.User'
+        "500":
+          description: Internal Server Error
+          schema:
+            type: string
+      summary: Delete user by id
+      tags:
+      - users
+    get:
+      consumes:
+      - application/json
+      description: Show user by id
+      parameters:
+      - description: User ID
+        in: path
+        name: id
+        required: true
+        type: integer
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/user.User'
+        "500":
+          description: Internal Server Error
+          schema:
+            type: string
+      summary: Show user by id
+      tags:
+      - users
+    put:
+      consumes:
+      - application/json
+      description: Update user by id
+      parameters:
+      - description: User ID
+        in: path
+        name: id
+        required: true
+        type: integer
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/user.User'
+        "500":
+          description: Internal Server Error
+          schema:
+            type: string
+      summary: Update user by id
+      tags:
+      - users
 swagger: "2.0"
