@@ -26,22 +26,70 @@ func (p *PostController) ApplyController(router fiber.Router) error {
 	return nil
 }
 
+// Show all posts
+// @Summary Show all posts
+// @Description Show all posts
+// @Tags posts
+// @Accept  json
+// @Produce  json
+// @Success 200 {object} Post
+// @Failure 500 {string} string "Internal Server Error"
+// @Router /posts [get]
 func handlePostGetAll(c *fiber.Ctx) error {
 	return c.SendString("GET /posts")
 }
 
+// Show post by id
+// @Summary Show post by id
+// @Description Show post by id
+// @Tags posts
+// @Accept  json
+// @Produce  json
+// @Param id path int true "Post ID"
+// @Success 200 {object} Post
+// @Failure 500 {string} string "Internal Server Error"
+// @Router /posts/:id [get]
 func handlePostGet(c *fiber.Ctx) error {
 	return c.SendString("GET /posts/:id")
 }
 
+// Create post
+// @Summary Create post
+// @Description Create post
+// @Tags posts
+// @Accept  json
+// @Produce  json
+// @Success 200 {object} Post
+// @Failure 500 {string} string "Internal Server Error"
+// @Router /posts [post]
 func handlePostPost(c *fiber.Ctx) error {
 	return c.SendString("POST /posts")
 }
 
+// Update post
+// @Summary Update post
+// @Description Update post
+// @Tags posts
+// @Accept  json
+// @Produce  json
+// @Param id path int true "Post ID"
+// @Success 200 {object} Post
+// @Failure 500 {string} string "Internal Server Error"
+// @Router /posts/:id [put]
 func handlePostPut(c *fiber.Ctx) error {
 	return c.SendString("PUT /posts/:id")
 }
 
+// Delete post
+// @Summary Delete post
+// @Description Delete post
+// @Tags posts
+// @Accept  json
+// @Produce  json
+// @Param id path int true "Post ID"
+// @Success 200 {object} Post
+// @Failure 500 {string} string "Internal Server Error"
+// @Router /posts/:id [delete]
 func handlePostDelete(c *fiber.Ctx) error {
 	return c.SendString("DELETE /posts/:id")
 }
