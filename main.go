@@ -5,6 +5,7 @@ import (
 
 	"github.com/BodyCMS/bodycms/core/category"
 	"github.com/BodyCMS/bodycms/core/tag"
+	"github.com/BodyCMS/bodycms/core/user"
 	_ "github.com/BodyCMS/bodycms/docs"
 	"github.com/BodyCMS/bodycms/lib/controller"
 	"github.com/BodyCMS/bodycms/lib/db"
@@ -32,6 +33,8 @@ func main() {
 		CmsDb: pdb,
 	}, &category.CategoryRepo{
 		CmsDb: pdb,
+	}, &user.UserRepo{
+		CmsDb: pdb,
 	})
 
 	app := fiber.New()
@@ -40,6 +43,7 @@ func main() {
 	v1Route := app.Group("/api/v1")
 	controller.ApplyController(v1Route, &tag.TagController{})
 	controller.ApplyController(v1Route, &category.CategoryController{})
+	controller.ApplyController(v1Route, &user.UserController{})
 
 	// Swagger
 	controller.ApplySwaggerRoutes(app)
