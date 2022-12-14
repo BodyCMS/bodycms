@@ -3,6 +3,7 @@ package main
 import (
 	"os"
 
+	"github.com/BodyCMS/bodycms/core/category"
 	"github.com/BodyCMS/bodycms/core/tag"
 	_ "github.com/BodyCMS/bodycms/docs"
 	"github.com/BodyCMS/bodycms/lib/controller"
@@ -29,6 +30,8 @@ func main() {
 	// Migration
 	db.MigrateAll(&tag.TagRepo{
 		CmsDb: pdb,
+	}, &category.CategoryRepo{
+		CmsDb: pdb,
 	})
 
 	app := fiber.New()
@@ -36,6 +39,7 @@ func main() {
 	// Controller
 	v1Route := app.Group("/api/v1")
 	controller.ApplyController(v1Route, &tag.TagController{})
+	controller.ApplyController(v1Route, &category.CategoryController{})
 
 	// Swagger
 	controller.ApplySwaggerRoutes(app)
