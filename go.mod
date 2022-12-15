@@ -5,7 +5,7 @@ go 1.19
 require (
 	github.com/arsmn/fiber-swagger/v2 v2.31.1
 	github.com/gofiber/fiber/v2 v2.40.1
-	github.com/swaggo/swag v1.8.8
+	github.com/swaggo/swag v1.8.9
 )
 
 require (
