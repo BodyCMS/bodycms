@@ -4,7 +4,7 @@ go 1.19
 
 require (
 	github.com/arsmn/fiber-swagger/v2 v2.31.1
-	github.com/gofiber/fiber/v2 v2.40.1
+	github.com/gofiber/fiber/v2 v2.41.0
 	github.com/swaggo/swag v1.8.8
 )
 
@@ -30,7 +30,7 @@ require (
 	github.com/klauspost/compress v1.15.13 // indirect
 	github.com/mailru/easyjson v0.7.7 // indirect
 	github.com/mattn/go-colorable v0.1.13 // indirect
-	github.com/mattn/go-isatty v0.0.16 // indirect
+	github.com/mattn/go-isatty v0.0.17 // indirect
 	github.com/mattn/go-runewidth v0.0.14 // indirect
 	github.com/rivo/uniseg v0.4.3 // indirect
 	github.com/swaggo/files v1.0.0 // indirect
